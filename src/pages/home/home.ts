@@ -9,12 +9,10 @@ import { MusicControls } from '@ionic-native/music-controls';
 })
 export class HomePage {
   file: MediaObject;
-  constructor(private musicControls: MusicControls, private media: Media, public navCtrl: NavController) {
+  constructor(public musicControls: MusicControls, public media: Media, public navCtrl: NavController) {
   }
-  play(){
-    this.file = this.media.create('https://archive.org/download/db2007-05-20.rm.flac16/db2007-05-20d1t01.mp3');
-    this.file.play();
 
+  settingMusicControl(){
     this.musicControls.destroy(); // it's the same with or without the destroy 
     this.musicControls.create({
       track       : 'Test track',        // optional, default : ''
@@ -23,7 +21,7 @@ export class HomePage {
       // cover can be a local path (use fullpath 'file:///storage/emulated/...', or only 'my_image.jpg' if my_image.jpg is in the www folder of your app)
       //           or a remote url ('http://...', 'https://...', 'ftp://...')
       isPlaying   : true,                         // optional, default : true
-      dismissable : true,                         // optional, default : false
+      dismissable : false,                         // optional, default : false
     
       // hide previous/next/close buttons:
       hasPrev   : false,      // show previous button, optional, default: true
@@ -34,13 +32,9 @@ export class HomePage {
       album       : 'test album',     // optional, default: ''
       duration : 0, // optional, default: 0
       elapsed : 0, // optional, default: 0
-      hasSkipForward : true,  // show skip forward button, optional, default: false
-      hasSkipBackward : true, // show skip backward button, optional, default: false
-      skipForwardInterval: 15, // display number for skip forward, optional, default: 0
-      skipBackwardInterval: 15, // display number for skip backward, optional, default: 0
     
       // Android only, optional
-      // text displayed in the status bar when the notification (and the ticker) are updated
+      // text displayed in the status bar when the notific\ation (and the ticker) are updated
       ticker    : 'Now playing test'
      });
      this.musicControls.subscribe().subscribe(action => {
@@ -56,12 +50,16 @@ export class HomePage {
             case 'music-controls-pause':
                // Do something
                console.log('musc pause');
-               this.pause();
+               this.file.pause();
+               this.musicControls.listen(); 
+               this.musicControls.updateIsPlaying(false);
                break;
             case 'music-controls-play':
                // Do something
                console.log('music play');
-               this.play();
+               this.file.play();
+               this.musicControls.listen(); 
+               this.musicControls.updateIsPlaying(true);
                break;
             case 'music-controls-destroy':
                // Do something
@@ -97,9 +95,27 @@ export class HomePage {
     });
     this.musicControls.listen(); // activates the observable above
     this.musicControls.updateIsPlaying(true);
-}
+  }
+
+  play(){
+    this.file = this.media.create('https://archive.org/download/db2007-05-20.rm.flac16/db2007-05-20d1t01.mp3');
+    this.file.play();
+
+    this.file.onStatusUpdate.subscribe(
+      (data) => {
+          switch (data) {
+              case 2: //is playing, otherwise the music control buttons are disabled 
+                  this.settingMusicControl();
+              break;
+            
+              default: 
+            }
+        }
+    );
+  }
 
   pause(){
     this.file.pause();
+    this.musicControls.updateIsPlaying(false);
   }
 }
