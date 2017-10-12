@@ -44,65 +44,59 @@ export class HomePage {
       ticker    : 'Now playing test'
      });
      this.musicControls.subscribe().subscribe(action => {
-         function events(action) {
           console.log('action', action);
-           const message = JSON.parse(action).message;
+          const message = JSON.parse(action).message;
+          switch(message) {
+            case 'music-controls-next':
+               // Do something
+               break;
+            case 'music-controls-previous':
+               // Do something
+               break;
+            case 'music-controls-pause':
+               // Do something
+               console.log('musc pause');
+               this.pause();
+               break;
+            case 'music-controls-play':
+               // Do something
+               console.log('music play');
+               this.play();
+               break;
+            case 'music-controls-destroy':
+               // Do something
+               break;
+            // External controls (iOS only)
+            case 'music-controls-toggle-play-pause' :
+              // Do something
+              break;
+            case 'music-controls-seek-to':
+              // Do something
+              break;
+            case 'music-controls-skip-forward':
+              // Do something
+              break;
+            case 'music-controls-skip-backward':
+              // Do something
+              break;
 
-               switch(message) {
-                   case 'music-controls-next':
-                       // Do something
-                       break;
-                   case 'music-controls-previous':
-                       // Do something
-                       break;
-                   case 'music-controls-pause':
-                       // Do something
-                       console.log('musc pause');
-                       this.pause();
-                       break;
-                   case 'music-controls-play':
-                       // Do something
-                       console.log('music play');
-                       this.play();
-                       break;
-                   case 'music-controls-destroy':
-                       // Do something
-                       break;
-                  // External controls (iOS only)
-                  case 'music-controls-toggle-play-pause' :
-                    // Do something
-                    break;
-                  case 'music-controls-seek-to':
-                    // Do something
-                    break;
-                  case 'music-controls-skip-forward':
-                    // Do something
-                    break;
-                  case 'music-controls-skip-backward':
-                    // Do something
-                    break;
-          
-                    // Headset events (Android only)
-                    // All media button events are listed below
-                    case 'music-controls-media-button' :
-                        // Do something
-                        break;
-                    case 'music-controls-headset-unplugged':
-                        // Do something
-                        break;
-                    case 'music-controls-headset-plugged':
-                        // Do something
-                        break;
-
-                    default:
-                        break;
-                }
-           }
-      
-       this.musicControls.listen(); // activates the observable above
-       this.musicControls.updateIsPlaying(true);
-
+              // Headset events (Android only)
+              // All media button events are listed below
+            case 'music-controls-media-button' :
+                // Do something
+                break;
+            case 'music-controls-headset-unplugged':
+                // Do something
+                break;
+            case 'music-controls-headset-plugged':
+                // Do something
+                break;
+            default:
+                break;
+          }
     });
+    this.musicControls.listen(); // activates the observable above
+    this.musicControls.updateIsPlaying(true);
 }
 
   pause(){
