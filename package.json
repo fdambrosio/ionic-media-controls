@@ -1,9 +1,12 @@
 {
-    "name": "testMusic",
+    "name": "testmusic",
     "version": "0.0.1",
     "author": "Ionic Framework",
     "homepage": "http://ionicframework.com/",
     "private": true,
+    "config": {
+        "ionic_source_map_type": "eval"
+    },
     "scripts": {
         "clean": "ionic-app-scripts clean",
         "build": "ionic-app-scripts build",
