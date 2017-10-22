@@ -104,7 +104,6 @@ export class HomePage {
 
   pause(){
     this.file.pause();
-    this.musicControls.listen();
     this.musicControls.updateIsPlaying(false);
   }
 }
