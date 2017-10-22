@@ -37,10 +37,10 @@ export class HomePage {
       // text displayed in the status bar when the notific\ation (and the ticker) are updated
       ticker    : 'Now playing test'
      });
-     this.musicControls.subscribe().subscribe(action => {
+     this.musicControls.subscribe().subscribe((action) => {
           console.log('action', action);
           const message = JSON.parse(action).message;
-          switch(message) {
+          switch(action) {
             case 'music-controls-next':
                // Do something
                break;
@@ -100,22 +100,12 @@ export class HomePage {
   play(){
     this.file = this.media.create('https://archive.org/download/db2007-05-20.rm.flac16/db2007-05-20d1t01.mp3');
     this.file.play();
-
-    this.file.onStatusUpdate.subscribe(
-      (data) => {
-          switch (data) {
-              case 2: //is playing, otherwise the music control buttons are disabled 
-                  this.settingMusicControl();
-              break;
-            
-              default: 
-            }
-        }
-    );
+    this.settingMusicControl();
   }
 
   pause(){
     this.file.pause();
+    this.musicControls.listen();
     this.musicControls.updateIsPlaying(false);
   }
 }
