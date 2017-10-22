@@ -39,7 +39,6 @@ export class HomePage {
      });
      this.musicControls.subscribe().subscribe((action) => {
           console.log('action', action);
-          const message = JSON.parse(action).message;
           switch(action) {
             case 'music-controls-next':
                // Do something
