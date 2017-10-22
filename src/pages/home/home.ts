@@ -97,7 +97,7 @@ export class HomePage {
   }
 
   play(){
-    this.file = this.media.create('https://archive.org/download/db2007-05-20.rm.flac16/db2007-05-20d1t01.mp3');
+    this.file = this.media.create('https://archive.org/download/tsp2007-06-19.mbho.flac16/tsp2007-06-19.mbho.d1t01.mp3');
     this.file.play();
     this.settingMusicControl();
   }
