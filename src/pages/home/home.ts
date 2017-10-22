@@ -27,7 +27,10 @@ export class HomePage {
       hasPrev   : false,      // show previous button, optional, default: true
       hasNext   : false,      // show next button, optional, default: true
       hasClose  : true,       // show close button, optional, default: false
-    
+      hasSkipForward : true,  // show skip forward button, optional, default: false
+      hasSkipBackward : false, // show skip backward button, optional, default: false
+      skipForwardInterval: 15, // display number for skip forward, optional, default: 0
+      skipBackwardInterval: 15, // display number for skip backward, optional, default: 0
     // iOS only, optional
       album       : 'test album',     // optional, default: ''
       duration : 0, // optional, default: 0
