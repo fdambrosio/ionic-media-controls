@@ -100,7 +100,7 @@ export class HomePage {
   }
 
   play(){
-    this.file = this.media.create('https://archive.org/download/tsp2007-06-19.mbho.flac16/tsp2007-06-19.mbho.d1t01.mp3');
+    this.file = this.media.create('http://www.sample-videos.com/audio/mp3/crowd-cheering.mp3');
     this.file.play();
     this.settingMusicControl();
   }
