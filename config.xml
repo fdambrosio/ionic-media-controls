@@ -78,7 +78,7 @@
     <allow-navigation href="http://192.168.103.208:8100" />
     <allow-navigation href="http://192.168.1.64:8100" />
     <engine name="android" spec="^6.2.3" />
-    <engine name="ios" spec="~4.5.2" />
+    <engine name="ios" spec="4.5.3" />
     <plugin name="cordova-plugin-media" spec="^3.0.1">
         <variable name="MICROPHONE_USAGE_DESCRIPTION" value=" " />
     </plugin>
