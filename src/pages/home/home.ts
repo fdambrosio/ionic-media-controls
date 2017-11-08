@@ -41,8 +41,9 @@ export class HomePage {
       ticker    : 'Now playing test'
      });
      this.musicControls.subscribe().subscribe((action) => {
+      console.log('action', action);
           const message = JSON.parse(action).message;
-          console.log('action', message);
+          console.log('message', message);
           switch(message) {
             case 'music-controls-next':
                // Do something
@@ -52,7 +53,7 @@ export class HomePage {
                break;
             case 'music-controls-pause':
                // Do something
-               console.log('musc pause');
+               console.log('music pause');
                this.file.pause();
                this.musicControls.listen(); 
                this.musicControls.updateIsPlaying(false);
