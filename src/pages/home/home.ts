@@ -21,13 +21,13 @@ export class HomePage {
       // cover can be a local path (use fullpath 'file:///storage/emulated/...', or only 'my_image.jpg' if my_image.jpg is in the www folder of your app)
       //           or a remote url ('http://...', 'https://...', 'ftp://...')
       isPlaying   : true,                         // optional, default : true
-      dismissable : false,                         // optional, default : false
+      dismissable : true,                         // optional, default : false
     
       // hide previous/next/close buttons:
       hasPrev   : false,      // show previous button, optional, default: true
       hasNext   : false,      // show next button, optional, default: true
       hasClose  : true,       // show close button, optional, default: false
-      hasSkipForward : true,  // show skip forward button, optional, default: false
+      hasSkipForward : false,  // show skip forward button, optional, default: false
       hasSkipBackward : false, // show skip backward button, optional, default: false
       skipForwardInterval: 15, // display number for skip forward, optional, default: 0
       skipBackwardInterval: 15, // display number for skip backward, optional, default: 0
@@ -41,8 +41,9 @@ export class HomePage {
       ticker    : 'Now playing test'
      });
      this.musicControls.subscribe().subscribe((action) => {
-          console.log('action', action);
-          switch(action) {
+          const message = JSON.parse(action).message;
+          console.log('action', message);
+          switch(message) {
             case 'music-controls-next':
                // Do something
                break;
