@@ -12,13 +12,12 @@ Tested with 9.3 - 10.3.1 - iOS 11
 
 Setup
 
-$ npm install -g cordova ionic
-$ npm install
-$ ionic cordova platform add ios
-$ ionic cordova build ios --release
+- $ npm install -g cordova ionic
+- $ npm install
+- $ ionic cordova platform add ios
+- $ ionic cordova build ios --release
 - Open /platforms/ios/TestAudio.xcarchive with XCode, enable Capabilities -> Background Modes -> "Audio"
 - confirm the "Update settings" warnings on XCode
-
 
 Environment:
 
